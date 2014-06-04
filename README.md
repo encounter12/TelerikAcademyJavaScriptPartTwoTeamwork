@@ -1,2 +1,2 @@
-TelerikAcademyJavaScriptPartTwoTeamwork
+Team "Noob Saibot"
 =======================================
