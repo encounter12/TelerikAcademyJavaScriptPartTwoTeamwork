@@ -10,21 +10,15 @@
         height: 720
     });
 
-    var layer = new Kinetic.Layer();
-
-    var solarSystem = new Kinetic.Group({
-        draggable: true
-    });
-
+    //Creating background layer and adding it to the stage
     var backgroundLayer = new Kinetic.Layer();
-
-    var imageObjOne = new Image();
-
-    imageObjOne.onload = function () {
+    var backgroundImage = new Image();
+    
+    backgroundImage.onload = function () {
         var background = new Kinetic.Image({
             x: 0,
             y: 0,
-            image: imageObjOne,
+            image: backgroundImage,
             width: 1200,
             height: 720
         });
@@ -32,139 +26,134 @@
         backgroundLayer.draw();
     };
 
-    imageObjOne.src = './images/background/deep-space-01.png';
+    backgroundImage.src = 'images/background/deep-space-01.png';
 
     stage.add(backgroundLayer);
 
+    //the whole solar system could be dragged anywhere on the canvas
+    var solarSystem = new Kinetic.Group({
+            draggable: true
+    });
+    
+    var planets = new Kinetic.Group();
+    var orbits = new Kinetic.Group();
 
-    var imageObjTwo = new Image();
+    //Creating sun and adding it to the solarSystem group
+    var sun;
+    var sunImage = new Image();
 
-    imageObjTwo.onload = function () {
-        var sun = new Kinetic.Image({
-            x: stage.width() / 2 - 35,
-            y: stage.height() / 2 - 35,
-            image: imageObjTwo,
+    sunImage.onload = function () {
+            sun = new Kinetic.Image({
+            x: stage.width() / 2,
+            y: stage.height() / 2,
+            image: sunImage,
             width: 70,
-            height: 70
+            height: 70,
+            offset: {x:35, y:35}
         });
+        sun.setAttr('angularSpeed');
+        sun.angularSpeed = 20;
         solarSystem.add(sun);
     };
 
-    imageObjTwo.src = './images/sun/sun.png';
+    sunImage.src = 'images/sun/sun.png';
 
+   //Creating Earth and adding it to the planets group, Earth's orbit is added to the orbits group
     var earthImage = new Image();
-    var earth = new Kinetic.Image({
-        x: 0,
-        y: 0,
-        image: earthImage,
-        width: 30,
-        height: 30,
-        offset: { x: 15, y: 15 }
-    });
+
     earthImage.onload = function () {
-        layer.add(earth);
-        stage.add(layer);
-
-        var angularSpeed = 240;
-        var anim = new Kinetic.Animation(function (frame) {
-            var angleDiff = frame.timeDiff * angularSpeed / 1000;
-            earth.rotate(angleDiff);
-        }, layer);
-
-        anim.start();
+        var earth = new Kinetic.Image({
+            x: stage.width() / 2 + 130,
+            y: stage.height() / 2,
+            image: earthImage,
+            width: 30,
+            height: 30,
+            offset: { x: 15, y: 15 }
+        });
+        earth.setAttr('angularSpeed');
+        earth.angularSpeed = 240;
+        earth.setAttr('distanceToSun');
+        earth.distanceToSun = 130;
+        earth.setAttr('speed');
+        earth.speed = 3;
+        earth.setAttr('period');
+        earth.period = 10000 / earth.speed;
+        earth.setAttr('orbit');
+        earth.orbit = new Kinetic.Circle({
+            x: stage.width() / 2,
+            y: stage.height() / 2,
+            radius: earth.distanceToSun,
+            stroke: 'white',
+            strokeWidth: 0.2
+        });
+        planets.add(earth);
+        orbits.add(earth.orbit);
     };
+
     earthImage.src = 'images/planets/earth - Copy.png';
 
-    //var earth = new Kinetic.Circle({
-    //    x: 0,
-    //    y: 0,
-    //    radius: 15,
-    //    fill: 'blue',
-    //    stroke: 'black',
-    //    strokeWidth: 1
-    //});
-
-    earth.setAttr('distanceToSun');
-    earth.distanceToSun = 130;
-    earth.setAttr('speed');
-    earth.speed = 3;
-    earth.setAttr('period');
-    earth.period = 10000 / earth.speed;
-    earth.setAttr('orbit');
-    earth.orbit = new Kinetic.Circle({
-        x: stage.width() / 2,
-        y: stage.height() / 2,
-        radius: earth.distanceToSun,
-        stroke: 'white',
-        strokeWidth: 0.2
-    });
-
+    //Creating Mars and adding it to the planets group, Mars' orbit is added to the orbits group
     var marsImage = new Image();
-    var mars = new Kinetic.Image({
-        x: 0,
-        y: 0,
-        image: marsImage,
-        width: 30,
-        height: 30,
-        offset: { x: 15, y: 15 }
-    });
+
     marsImage.onload = function () {
-        layer.add(mars);
-        stage.add(layer);
-
-        var angularSpeed = 120;
-        var anim = new Kinetic.Animation(function (frame) {
-            var angleDiff = frame.timeDiff * angularSpeed / 1000;
-            mars.rotate(angleDiff);
-        }, layer);
-
-        anim.start();
+        var mars = new Kinetic.Image({
+            x: stage.width() / 2 + 210,
+            y: stage.height() / 2,
+            image: marsImage,
+            width: 30,
+            height: 30,
+            offset: { x: 15, y: 15 }
+        });
+        mars.setAttr('angularSpeed');
+        mars.angularSpeed = 120;
+        mars.setAttr('distanceToSun');
+        mars.distanceToSun = 210;
+        mars.setAttr('speed');
+        mars.speed = 1;
+        mars.setAttr('period');
+        mars.period = 10000 / mars.speed;
+        mars.setAttr('orbit');
+        mars.orbit = new Kinetic.Circle({
+            x: stage.width() / 2,
+            y: stage.height() / 2,
+            radius: mars.distanceToSun,
+            stroke: 'white',
+            strokeWidth: 0.2
+        });
+        planets.add(mars);
+        orbits.add(mars.orbit);
     };
-    marsImage.src = 'images/planets/mars - Copy.png';
 
-    //var mars = new Kinetic.Circle({
-    //    x: 0,
-    //    y: 0,
-    //    radius: 12,
-    //    fill: 'red',
-    //    stroke: 'black',
-    //    strokeWidth: 1
-    //});
+    marsImage.src = './images/planets/mars - Copy.png';
 
-    mars.setAttr('distanceToSun');
-    mars.distanceToSun = 210;
-    mars.setAttr('speed');
-    mars.speed = 1;
-    mars.setAttr('period');
-    mars.period = 10000 / mars.speed;
-    mars.setAttr('orbit');
-    mars.orbit = new Kinetic.Circle({
-        x: stage.width() / 2,
-        y: stage.height() / 2,
-        radius: mars.distanceToSun,
-        stroke: 'white',
-        strokeWidth: 0.2
-    });
+    solarSystem.add(planets);
+    solarSystem.add(orbits);
 
-    var planets = [earth, mars];
-
-    for (var i = 0; i < planets.length; i += 1) {
-        solarSystem.add(planets[i]);
-        solarSystem.add(planets[i].orbit);
-    }
-
+    var layer = new Kinetic.Layer();
     layer.add(solarSystem);
     stage.add(layer);
 
+    var planetsArray = planets.getChildren();
+
     var centerX = stage.width() / 2;
     var centerY = stage.height() / 2;
+    var angleDiff;
 
     var anim = new Kinetic.Animation(function (frame) {
 
-        for (var i = 0; i < planets.length; i += 1) {
-            planets[i].setX(planets[i].distanceToSun * Math.cos(frame.time * 2 * Math.PI / planets[i].period) + centerX);
-            planets[i].setY(planets[i].distanceToSun * Math.sin(frame.time * 2 * Math.PI / planets[i].period) + centerY);
-        };
+        for (var i = 0; i < planetsArray.length; i += 1) {
+            //planets orbiting around the Sun
+            planetsArray[i].setX(planetsArray[i].distanceToSun * Math.cos(frame.time * 2 * Math.PI / planetsArray[i].period) + centerX);
+            planetsArray[i].setY(planetsArray[i].distanceToSun * Math.sin(frame.time * 2 * Math.PI / planetsArray[i].period) + centerY);
+            
+            //planets rotating on their axes
+            angleDiff = frame.timeDiff * planetsArray[i].angularSpeed / 1000;
+            planetsArray[i].rotate(angleDiff);
+        }
+
+        //Sun rotating on its axis
+        angleDiff = frame.timeDiff * sun.angularSpeed / 1000;
+        sun.rotate(angleDiff);
 
     }, layer);
 
