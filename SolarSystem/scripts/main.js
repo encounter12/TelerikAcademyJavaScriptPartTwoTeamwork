@@ -52,14 +52,37 @@
 
     imageObjTwo.src = './images/sun/sun.png';
 
-    var earth = new Kinetic.Circle({
+    var earthImage = new Image();
+    var earth = new Kinetic.Image({
         x: 0,
         y: 0,
-        radius: 15,
-        fill: 'blue',
-        stroke: 'black',
-        strokeWidth: 1
+        image: earthImage,
+        width: 30,
+        height: 30,
+        offset: { x: 15, y: 15 }
     });
+    earthImage.onload = function () {
+        layer.add(earth);
+        stage.add(layer);
+
+        var angularSpeed = 240;
+        var anim = new Kinetic.Animation(function (frame) {
+            var angleDiff = frame.timeDiff * angularSpeed / 1000;
+            earth.rotate(angleDiff);
+        }, layer);
+
+        anim.start();
+    };
+    earthImage.src = 'images/planets/earth - Copy.png';
+
+    //var earth = new Kinetic.Circle({
+    //    x: 0,
+    //    y: 0,
+    //    radius: 15,
+    //    fill: 'blue',
+    //    stroke: 'black',
+    //    strokeWidth: 1
+    //});
 
     earth.setAttr('distanceToSun');
     earth.distanceToSun = 130;
@@ -76,15 +99,37 @@
         strokeWidth: 0.2
     });
 
-
-    var mars = new Kinetic.Circle({
+    var marsImage = new Image();
+    var mars = new Kinetic.Image({
         x: 0,
         y: 0,
-        radius: 12,
-        fill: 'red',
-        stroke: 'black',
-        strokeWidth: 1
+        image: marsImage,
+        width: 30,
+        height: 30,
+        offset: { x: 15, y: 15 }
     });
+    marsImage.onload = function () {
+        layer.add(mars);
+        stage.add(layer);
+
+        var angularSpeed = 120;
+        var anim = new Kinetic.Animation(function (frame) {
+            var angleDiff = frame.timeDiff * angularSpeed / 1000;
+            mars.rotate(angleDiff);
+        }, layer);
+
+        anim.start();
+    };
+    marsImage.src = 'images/planets/mars - Copy.png';
+
+    //var mars = new Kinetic.Circle({
+    //    x: 0,
+    //    y: 0,
+    //    radius: 12,
+    //    fill: 'red',
+    //    stroke: 'black',
+    //    strokeWidth: 1
+    //});
 
     mars.setAttr('distanceToSun');
     mars.distanceToSun = 210;
