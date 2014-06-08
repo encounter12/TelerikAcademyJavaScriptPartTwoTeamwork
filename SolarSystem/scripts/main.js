@@ -114,6 +114,7 @@
         mars.period = 10000 / mars.speed;
         mars.setAttr('orbit');
         mars.orbit = new Kinetic.Circle({
+
             x: stage.width() / 2 + 25,
             y: stage.height() / 2,
             radius: mars.distanceToSun,
@@ -135,8 +136,10 @@
 
     var planetsArray = planets.getChildren();
 
+
     var angleDiff;
 
+    //class Animation
     var anim = new Kinetic.Animation(function (frame) {
 
         for (var i = 0; i < planetsArray.length; i += 1) {
