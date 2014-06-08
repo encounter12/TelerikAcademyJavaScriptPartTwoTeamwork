@@ -114,7 +114,7 @@
         mars.period = 10000 / mars.speed;
         mars.setAttr('orbit');
         mars.orbit = new Kinetic.Circle({
-            x: stage.width() / 2,
+            x: stage.width() / 2 + 25,
             y: stage.height() / 2,
             radius: mars.distanceToSun,
             stroke: 'white',
@@ -135,16 +135,14 @@
 
     var planetsArray = planets.getChildren();
 
-    var centerX = stage.width() / 2;
-    var centerY = stage.height() / 2;
     var angleDiff;
 
     var anim = new Kinetic.Animation(function (frame) {
 
         for (var i = 0; i < planetsArray.length; i += 1) {
             //planets orbiting around the Sun
-            planetsArray[i].setX(planetsArray[i].distanceToSun * Math.cos(frame.time * 2 * Math.PI / planetsArray[i].period) + centerX);
-            planetsArray[i].setY(planetsArray[i].distanceToSun * Math.sin(frame.time * 2 * Math.PI / planetsArray[i].period) + centerY);
+            planetsArray[i].setX(planetsArray[i].distanceToSun * Math.cos(frame.time * 2 * Math.PI / planetsArray[i].period) + planetsArray[i].orbit.x());
+            planetsArray[i].setY(planetsArray[i].distanceToSun * Math.sin(frame.time * 2 * Math.PI / planetsArray[i].period) + planetsArray[i].orbit.y());
             
             //planets rotating on their axes
             angleDiff = frame.timeDiff * planetsArray[i].angularSpeed / 1000;
