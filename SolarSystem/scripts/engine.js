@@ -47,7 +47,7 @@ var engine = (function() {
 			}
 
 			for (var i = 0; i < solarSystem.celestialObjects.length; i += 1) {
-				solarSystem.celestialObjects[i].animationFrame(frame);
+				solarSystem.celestialObjects[i].animationFrame(frame, this.layer);
 			}
 		};
 
