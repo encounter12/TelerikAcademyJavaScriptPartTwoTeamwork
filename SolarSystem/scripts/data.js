@@ -21,7 +21,7 @@ var Data = (function () {
     },
         celestialObjects = [{
             name: 'Sun',
-            imgSrc: 'images/sun/sun.png',
+            imgSrc: './images/sun/sun.png',
             radius: 2.33 * base.radius, // radius: 109.13 * base.radius,    // to make it accurately scaled to Earth's radius
             angularSpeed: 34 * base.angularSpeed,
             orbitSpeed: 10000,          // can't be 0 because period would be 'infinity' (period = 10000 / orbitSpeed)
@@ -42,7 +42,7 @@ var Data = (function () {
             }
         }, {
             name: 'Mercury',
-            imgSrc: 'images/sun/sun.png',   // TODO
+            imgSrc: './images/planets/mercury.png',
             radius: 0.38 * base.radius,
             angularSpeed: 58.6 * base.angularSpeed,
             orbitSpeed: 0.24 * base.orbitSpeed,
@@ -63,7 +63,7 @@ var Data = (function () {
             }
         }, {
             name: 'Venus',
-            imgSrc: 'images/sun/sun.png',   // TODO
+            imgSrc: './images/planets/venus.png',
             radius: 0.95 * base.radius,
             angularSpeed: 241 * base.angularSpeed,
             orbitSpeed: 0.62 * base.orbitSpeed,
@@ -84,7 +84,7 @@ var Data = (function () {
             }
         }, {
             name: 'Earth',
-            imgSrc: 'images/planets/earth - Copy.png',
+            imgSrc: './images/planets/earth.png',
             radius: base.radius,
             angularSpeed: base.angularSpeed,
             orbitSpeed: base.orbitSpeed,
@@ -105,7 +105,7 @@ var Data = (function () {
             }
         }, {
             name: 'Mars',
-            imgSrc: './images/planets/mars - Copy.png',
+            imgSrc: './images/planets/mars.png',
             radius: 0.53 * base.radius,
             angularSpeed: 1.03 * base.angularSpeed,
             orbitSpeed: 1.88 * base.orbitSpeed,
@@ -126,7 +126,7 @@ var Data = (function () {
             }
         }, {
             name: 'Jupiter',
-            imgSrc: './images/sun/sun.png', // TODO
+            imgSrc: './images/planets/jupiter.png',
             radius: 2 * base.radius,    // radius: 11.21 * base.radius,     // to make it accurately scaled to Earth's radius
             angularSpeed: 0.41 * base.angularSpeed,
             orbitSpeed: 11.86 * base.orbitSpeed,
@@ -147,7 +147,7 @@ var Data = (function () {
             }
         }, {
             name: 'Saturn',
-            imgSrc: './images/sun/sun.png', // TODO
+            imgSrc: './images/planets/saturn.png',
             radius: 1.8 * base.radius,    // radius: 9.45 * base.radius,    // to make it accurately scaled to Earth's radius
             angularSpeed: 0.44 * base.angularSpeed,
             orbitSpeed: 29.46 * base.orbitSpeed,
@@ -168,7 +168,7 @@ var Data = (function () {
             }
         }, {
             name: 'Uranus',
-            imgSrc: './images/sun/sun.png', // TODO
+            imgSrc: './images/planets/uranus.png',
             radius: 1.4 * base.radius,    // radius: 4.01 * base.radius,     // to make it accurately scaled to Earth's radius
             angularSpeed: 0.75 * base.angularSpeed,
             orbitSpeed: 84.06 * base.orbitSpeed,
@@ -189,7 +189,7 @@ var Data = (function () {
             }
         }, {
             name: 'Neptune',
-            imgSrc: './images/sun/sun.png', // TODO
+            imgSrc: './images/planets/neptune.png',
             radius: 1.4 * base.radius,    // radius: 3.88 * base.radius,     // to make it accurately scaled to Earth's radius
             angularSpeed: 0.79 * base.angularSpeed,
             orbitSpeed: 164.84 * base.orbitSpeed,
@@ -210,7 +210,7 @@ var Data = (function () {
             }
         }, {
             name: 'Pluto',
-            imgSrc: './images/sun/sun.png', // TODO
+            imgSrc: './images/planets/pluto.png',
             radius: 0.36 * base.radius,
             angularSpeed: 6.4 * base.angularSpeed,
             orbitSpeed: 248.08 * base.orbitSpeed,
