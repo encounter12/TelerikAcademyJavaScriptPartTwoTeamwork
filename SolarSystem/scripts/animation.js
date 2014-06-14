@@ -1,7 +1,7 @@
 /*jslint browser: true*/
 /*global engine, Kinetic */
 
-var animation = (function() {
+var animation = (function () {
     var stage,
         layer,
         kineticGroup,
@@ -13,7 +13,7 @@ var animation = (function() {
     function Animation() {
         this.width = 1100;
         this.height = 1050;
-        this.init = function(spaceObjects) {
+        this.init = function (spaceObjects) {
             stage = new Kinetic.Stage({
                 container: 'container',
                 width: this.width,
@@ -25,40 +25,40 @@ var animation = (function() {
             kineticGroup = new Kinetic.Group();
 
             for (var i = 0, len = spaceObjects.length; i < len; i += 1) {
-                spaceObjects[i].name;
                 images.push(new Image());
-                images[i].onload = createKineticImage;
+                images[i].onload = createKineticImage(spaceObjects[i].radius);
                 images[i].src = spaceObjects[i].imgSrc;
                 images[i].spaceObject = spaceObjects[i];
             }
 
             layer.add(kineticGroup);
-            stage.draw();
+            layer.draw();
+
         };
 
-        this.start = function() {
+        this.start = function () {
             anim.start();
         };
 
-        this.stop = function() {
+        this.stop = function () {
             anim.stop();
         };
     }
 
-    function createKineticImage() {
+    function createKineticImage(radius) {
         var kineticImage = new Kinetic.Image({
             x: stage.width() / 2,
             y: stage.height() / 2,
             image: this,
-            width: 180,
-            height: 180,
+            width: radius,
+            height: radius,
             offset: {
-                x: 90,
-                y: 90
+                x: radius / 2,
+                y: radius / 2
             }
         });
 
-        kineticImage.spaceObject = this.spaceObject;
+        kineticImage.spaceObject = this.spaceObject;    // => kineticImage.spaceObject = undefined
         delete this.spaceObject;
         kineticImage.addEventListener('click', engine.onObjectClick, false);
         spaceBodies.push(kineticImage);
@@ -68,8 +68,8 @@ var animation = (function() {
     function AnimateFrame(frame) {
         for (var i = 0, len = spaceBodies.length; i < len; i += 1) {
             //planets orbiting around the Sun; a,b - ellipse radii
-            spaceBodies[i].setX(spaceBodies[i].spaceObject.orbit.radiusX * Math.cos(frame.time * 2 * Math.PI / spaceBodies[i].spaceObject.period)); //+ spaceBodies[i].spaceObject.orbit.x());
-            spaceBodies[i].setY(spaceBodies[i].spaceObject.orbit.radiusY * Math.sin(frame.time * 2 * Math.PI / spaceBodies[i].spaceObject.period));// + spaceBodies[i].spaceObject.orbit.y());
+            spaceBodies[i].setX(spaceBodies[i].spaceObject.orbit.radiusX * Math.cos(frame.time * 2 * Math.PI / spaceBodies[i].spaceObject.period) + spaceBodies[i].spaceObject.orbit.centerX);
+            spaceBodies[i].setY(spaceBodies[i].spaceObject.orbit.radiusY * Math.sin(frame.time * 2 * Math.PI / spaceBodies[i].spaceObject.period) + spaceBodies[i].spaceObject.orbit.centerY);
 
             //planets and Sun rotating on their axes
             var angleDiff = frame.timeDiff * spaceBodies[i].spaceObject.angularSpeed / 1000;

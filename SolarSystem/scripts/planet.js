@@ -5,6 +5,8 @@ function Planet(data) {
 	var orbitCenterY = animation.height / 2 + data.orbitOffset.y;
 
 	this.name = data.name;
+	//this.speed = data.orbitSpeed;
+	this.period = 10000 / data.orbitSpeed;
 	this.radius = data.radius;
 	this.angularSpeed = data.angularSpeed;
 	this.orbit = new Orbit(orbitCenterX, orbitCenterY, data.orbitRadiusX, data.orbitRadiusY);
