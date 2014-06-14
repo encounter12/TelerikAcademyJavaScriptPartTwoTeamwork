@@ -33,7 +33,7 @@ var animation = (function() {
             }
 
             layer.add(kineticGroup);
-            stage.draw();
+            layer.draw();
         };
 
         this.start = function() {
@@ -59,7 +59,6 @@ var animation = (function() {
         });
 
         kineticImage.spaceObject = this.spaceObject;
-        delete this.spaceObject;
         kineticImage.addEventListener('click', engine.onObjectClick, false);
         spaceBodies.push(kineticImage);
         kineticGroup.add(kineticImage);
@@ -69,7 +68,7 @@ var animation = (function() {
         for (var i = 0, len = spaceBodies.length; i < len; i += 1) {
             //planets orbiting around the Sun; a,b - ellipse radii
             spaceBodies[i].setX(spaceBodies[i].spaceObject.orbit.radiusX * Math.cos(frame.time * 2 * Math.PI / spaceBodies[i].spaceObject.period)); //+ spaceBodies[i].spaceObject.orbit.x());
-            spaceBodies[i].setY(spaceBodies[i].spaceObject.orbit.radiusY * Math.sin(frame.time * 2 * Math.PI / spaceBodies[i].spaceObject.period));// + spaceBodies[i].spaceObject.orbit.y());
+            spaceBodies[i].setY(spaceBodies[i].spaceObject.orbit.radiusY * Math.sin(frame.time * 2 * Math.PI / spaceBodies[i].spaceObject.period)); // + spaceBodies[i].spaceObject.orbit.y());
 
             //planets and Sun rotating on their axes
             var angleDiff = frame.timeDiff * spaceBodies[i].spaceObject.angularSpeed / 1000;
