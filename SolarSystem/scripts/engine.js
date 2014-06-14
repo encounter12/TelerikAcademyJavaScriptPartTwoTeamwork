@@ -1,36 +1,41 @@
-/*global Kinetic, Data, solarSystem */
+/*global Data, solarSystem, animation */
 var engine = (function() {
 	var engine = new Engine(),
 		isRunning = true;
 
-	// The Engine is Singleton 
 	function Engine() {
-		
-		// Initialize engine and graphics (to be called ONLY ONCE!!!)
+
+		// To be called ONLY ONCE!!!
 		this.init = function() {
 			solarSystem.init(Data.collection);
-			animation.init(SolarSystem.spaceObjects);
+			animation.init(solarSystem.spaceObjects);
+			document.getElementById('start').addEventListener('click', this.onBtnStartClick, false);
+			document.getElementById('stop').addEventListener('click', this.onBtnStopClick, false);
 		};
 
 		// Handle all onClick events, must be added to all celestialObjects as default onClick
-		this.onClickHandler = function(event) {
-			event = event || window.event;
-			var target = event.target || event.srcElement;
-
-			if (this.isRunning()) {
-				this.stop();
-			} else {
-				this.start();
+		this.onObjectClick = function() {
+			if (isRunning) {
+				return;
 			}
 
-			target.togleDisplayInfo();
+			animation.displayInfo(this);
+		};
+
+		this.onBtnStartClick = function() {
+			isRunning = true;
+			animation.start();
+		};
+
+		this.onBtnStopClick = function() {
+			isRunning = false;
+			animation.stop();
 		};
 	}
 
 	// To be shure that all elements are loaded before start the engine
 	window.onload = function() {
 		engine.init();
-		engine.start();
 	};
 
 	// Make engine a global variable

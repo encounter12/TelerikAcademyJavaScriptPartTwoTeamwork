@@ -1,41 +1,81 @@
 /*jslint browser: true*/
+/*global engine, Kinetic */
 
 var animation = (function() {
-    var anim = new Animation();
+    var stage,
+        layer,
+        kineticGroup,
+        images = [],
+        spaceBodies = [],
+        anim = new Kinetic.Animation(AnimateFrame, layer),
+        animation = new Animation();
 
-    function Animation(spaceObjects, layer) {
-        this.anim = new Kinetic.Animation(function(frame) {
-            var bodies = spaceObjects.getChildren();
+    function Animation() {
+        this.width = 1100;
+        this.height = 1050;
+        this.init = function(spaceObjects) {
+            stage = new Kinetic.Stage({
+                container: 'container',
+                width: this.width,
+                height: this.height
+            });
+            layer = new Kinetic.Layer();
+            stage.add(layer);
 
-            for (var i = 0, len = bodies.length; i < len; i += 1) {
-                //planets orbiting around the Sun; a,b - ellipse radii
-                bodies[i].setX(bodies[i].orbit.radiusX() * Math.cos(frame.time * 2 * Math.PI / bodies[i].period) + bodies[i].orbit.x());
-                bodies[i].setY(bodies[i].orbit.radiusY() * Math.sin(frame.time * 2 * Math.PI / bodies[i].period) + bodies[i].orbit.y());
+            kineticGroup = new Kinetic.Group();
 
-                //planets and Sun rotating on their axes
-                angleDiff = frame.timeDiff * bodies[i].angularSpeed / 1000;
-                bodies[i].rotate(angleDiff);
+            for (var i = 0, len = spaceObjects.length; i < len; i += 1) {
+                spaceObjects[i].name;
+                images.push(new Image());
+                images[i].onload = createKineticImage;
+                images[i].src = spaceObjects[i].imgSrc;
+                images[i].spaceObject = spaceObjects[i];
             }
 
-        }, layer);
-    }
-
-    this.init = function(spaceObjects) {
-
-        for (var i = 0, len = spaceObjects.length; i < len; i++) {
-            spaceObjects[i];
+            layer.add(kineticGroup);
+            stage.draw();
         };
 
-    };
+        this.start = function() {
+            anim.start();
+        };
 
-    Animation.prototype.start = function() {
-        this.anim.start();
-    };
+        this.stop = function() {
+            anim.stop();
+        };
+    }
 
-    Animation.prototype.stop = function() {
-        this.anim.stop();
-    };
+    function createKineticImage() {
+        var kineticImage = new Kinetic.Image({
+            x: stage.width() / 2,
+            y: stage.height() / 2,
+            image: this,
+            width: 180,
+            height: 180,
+            offset: {
+                x: 90,
+                y: 90
+            }
+        });
 
-    return anim;
+        kineticImage.spaceObject = this.spaceObject;
+        delete this.spaceObject;
+        kineticImage.addEventListener('click', engine.onObjectClick, false);
+        spaceBodies.push(kineticImage);
+        kineticGroup.add(kineticImage);
+    }
 
+    function AnimateFrame(frame) {
+        for (var i = 0, len = spaceBodies.length; i < len; i += 1) {
+            //planets orbiting around the Sun; a,b - ellipse radii
+            spaceBodies[i].setX(spaceBodies[i].spaceObject.orbit.radiusX * Math.cos(frame.time * 2 * Math.PI / spaceBodies[i].spaceObject.period)); //+ spaceBodies[i].spaceObject.orbit.x());
+            spaceBodies[i].setY(spaceBodies[i].spaceObject.orbit.radiusY * Math.sin(frame.time * 2 * Math.PI / spaceBodies[i].spaceObject.period));// + spaceBodies[i].spaceObject.orbit.y());
+
+            //planets and Sun rotating on their axes
+            var angleDiff = frame.timeDiff * spaceBodies[i].spaceObject.angularSpeed / 1000;
+            spaceBodies[i].rotate(angleDiff);
+        }
+    }
+
+    return animation;
 })();
