@@ -4,6 +4,7 @@
 var animation = (function() {
     var stage,
         layer,
+        backgroundLayer,
         kineticGroup,
         images = [],
         spaceBodies = [],
@@ -11,7 +12,7 @@ var animation = (function() {
         animation = new Animation();
 
     function Animation() {
-        this.width = 1100;
+        this.width = 1500;
         this.height = 1050;
         this.init = function(spaceObjects) {
             stage = new Kinetic.Stage({
@@ -19,10 +20,32 @@ var animation = (function() {
                 width: this.width,
                 height: this.height
             });
+
+            backgroundLayer = new Kinetic.Layer();
             layer = new Kinetic.Layer();
+
+            stage.add(backgroundLayer);
             stage.add(layer);
 
-            kineticGroup = new Kinetic.Group();
+            var backgroundImage = new Image();
+
+            backgroundImage.onload = function() {
+                var background = new Kinetic.Image({
+                    x: 0,
+                    y: 0,
+                    image: backgroundImage,
+                    width: 1500,
+                    height: 1200
+                });
+                backgroundLayer.add(background);
+                backgroundLayer.draw();
+            };
+
+            backgroundImage.src = 'images/background/deep-space-01.png';
+
+            kineticGroup = new Kinetic.Group({
+                draggable: true
+            });
 
             for (var i = 0, len = spaceObjects.length; i < len; i += 1) {
                 images.push(new Image());
@@ -59,7 +82,7 @@ var animation = (function() {
         });
 
         kineticImage.setAttr('spaceObject');
-        kineticImage.spaceObject = this.spaceObject; // => kineticImage.spaceObject = undefined
+        kineticImage.spaceObject = this.spaceObject;
         kineticImage.addEventListener('click', engine.onObjectClick, false);
         spaceBodies.push(kineticImage);
         kineticGroup.add(kineticImage);
@@ -75,6 +98,8 @@ var animation = (function() {
             var angleDiff = frame.timeDiff * spaceBodies[i].spaceObject.angularSpeed / 1000;
             spaceBodies[i].rotate(angleDiff);
         }
+
+        layer.draw();
     }
 
     return animation;

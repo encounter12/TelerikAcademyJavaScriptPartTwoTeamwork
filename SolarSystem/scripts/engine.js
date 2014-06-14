@@ -36,6 +36,8 @@ var engine = (function() {
 	// To be shure that all elements are loaded before start the engine
 	window.onload = function() {
 		engine.init();
+		animation.start();
+		setTimeout(animation.stop, 50);
 	};
 
 	// Make engine a global variable
