@@ -1,7 +1,7 @@
 /*jslint browser: true*/
 /*global engine, Kinetic */
 
-var animation = (function () {
+var animation = (function() {
     var stage,
         layer,
         kineticGroup,
@@ -13,7 +13,7 @@ var animation = (function () {
     function Animation() {
         this.width = 1100;
         this.height = 1050;
-        this.init = function (spaceObjects) {
+        this.init = function(spaceObjects) {
             stage = new Kinetic.Stage({
                 container: 'container',
                 width: this.width,
@@ -26,7 +26,7 @@ var animation = (function () {
 
             for (var i = 0, len = spaceObjects.length; i < len; i += 1) {
                 images.push(new Image());
-                images[i].onload = createKineticImage(spaceObjects[i].radius);
+                images[i].onload = createKineticImage;
                 images[i].src = spaceObjects[i].imgSrc;
                 images[i].spaceObject = spaceObjects[i];
             }
@@ -36,30 +36,30 @@ var animation = (function () {
 
         };
 
-        this.start = function () {
+        this.start = function() {
             anim.start();
         };
 
-        this.stop = function () {
+        this.stop = function() {
             anim.stop();
         };
     }
 
-    function createKineticImage(radius) {
+    function createKineticImage() {
         var kineticImage = new Kinetic.Image({
             x: stage.width() / 2,
             y: stage.height() / 2,
             image: this,
-            width: radius,
-            height: radius,
+            width: this.spaceObject.radius,
+            height: this.spaceObject.radius,
             offset: {
-                x: radius / 2,
-                y: radius / 2
+                x: this.spaceObject.radius / 2,
+                y: this.spaceObject.radius / 2
             }
         });
 
-        kineticImage.spaceObject = this.spaceObject;    // => kineticImage.spaceObject = undefined
-        delete this.spaceObject;
+        kineticImage.setAttr('spaceObject');
+        kineticImage.spaceObject = this.spaceObject; // => kineticImage.spaceObject = undefined
         kineticImage.addEventListener('click', engine.onObjectClick, false);
         spaceBodies.push(kineticImage);
         kineticGroup.add(kineticImage);
