@@ -10,7 +10,7 @@
         height: 1050
     });
 
-    //Creating background layer and adding it to the stage
+//Creating background layer and adding it to the stage
     var backgroundLayer = new Kinetic.Layer();
     var backgroundImage = new Image();
 
@@ -30,7 +30,7 @@
 
     stage.add(backgroundLayer);
 
-    //the whole solar system could be dragged anywhere on the canvas
+//the whole solar system could be dragged anywhere on the canvas
     var solarSystem = new Kinetic.Group({
         draggable: true
     });
@@ -38,7 +38,7 @@
     var spaceObjects = new Kinetic.Group();
     var orbits = new Kinetic.Group();
 
-    //Creating sun and adding it to the solarSystem group
+//Creating sun and adding it to the solarSystem group
     var sun;
     var sunImage = new Image();
 
@@ -74,9 +74,9 @@
 
     sunImage.src = 'images/sun/sun.png';
 
-    //****************
+//****************
 
-    //Creating Mercury and adding it to the spaceObjects group, Earth's orbit is added to the orbits group
+//Creating Mercury and adding it to the spaceObjects group, Earth's orbit is added to the orbits group
     var mercuryImage = new Image();
 
     mercuryImage.onload = function() {
@@ -114,7 +114,7 @@
 
     mercuryImage.src = 'images/planets/mercury.png';
 
-    //Creating Venus and adding it to the spaceObjects group, Earth's orbit is added to the orbits group
+//Creating Venus and adding it to the spaceObjects group, Earth's orbit is added to the orbits group
     var venusImage = new Image();
 
     venusImage.onload = function() {
@@ -152,7 +152,7 @@
 
     venusImage.src = 'images/planets/venus.png';
 
-    //Creating Earth and adding it to the spaceObjects group, Earth's orbit is added to the orbits group
+//Creating Earth and adding it to the spaceObjects group, Earth's orbit is added to the orbits group
     var earthImage = new Image();
 
     earthImage.onload = function() {
@@ -190,7 +190,7 @@
 
     earthImage.src = 'images/planets/earth.png';
 
-    //Creating Mars and adding it to the spaceObjects group, Mars' orbit is added to the orbits group
+//Creating Mars and adding it to the spaceObjects group, Earth's orbit is added to the orbits group
     var marsImage = new Image();
 
     marsImage.onload = function() {
@@ -228,7 +228,7 @@
 
     marsImage.src = './images/planets/mars.png';
 
-    //Creating Jupiter and adding it to the spaceObjects group, Mars' orbit is added to the orbits group
+//Creating Jupiter and adding it to the spaceObjects group, Earth's orbit is added to the orbits group
     var jupiterImage = new Image();
 
     jupiterImage.onload = function() {
@@ -266,7 +266,7 @@
 
     jupiterImage.src = './images/planets/jupiter.png';
 
-    //Creating Saturn and adding it to the spaceObjects group, Mars' orbit is added to the orbits group
+//Creating Saturn and adding it to the spaceObjects group, Earth's orbit is added to the orbits group
     var saturnImage = new Image();
 
     saturnImage.onload = function() {
@@ -304,7 +304,7 @@
 
     saturnImage.src = './images/planets/saturn.png';
 
-    //Creating Uranus and adding it to the spaceObjects group, Mars' orbit is added to the orbits group
+//Creating Uranus and adding it to the spaceObjects group, Earth's orbit is added to the orbits group
     var uranusImage = new Image();
 
     uranusImage.onload = function() {
@@ -342,7 +342,7 @@
 
     uranusImage.src = './images/planets/uranus.png';
 
-    //Creating Neptune and adding it to the spaceObjects group, Mars' orbit is added to the orbits group
+//Creating Neptune and adding it to the spaceObjects group, Earth's orbit is added to the orbits group
     var neptuneImage = new Image();
 
     neptuneImage.onload = function() {
@@ -380,7 +380,7 @@
 
     neptuneImage.src = './images/planets/neptune.png';
 
-    //Creating Pluto and adding it to the spaceObjects group, Mars' orbit is added to the orbits group
+//Creating Pluto and adding it to the spaceObjects group, Earth's orbit is added to the orbits group
     var plutoImage = new Image();
 
     plutoImage.onload = function() {
@@ -418,8 +418,8 @@
 
     plutoImage.src = './images/planets/pluto.png';
 
-    solarSystem.add(spaceObjects);
     solarSystem.add(orbits);
+    solarSystem.add(spaceObjects);
     
     var layer = new Kinetic.Layer();
     layer.add(solarSystem);

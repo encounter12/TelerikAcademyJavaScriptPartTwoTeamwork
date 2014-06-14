@@ -8,8 +8,8 @@ var Data = (function () {
     // angularSpeed  - Speed with which planet/star orbits around own axis (1 day)
     // orbitSpeed    - Speed with which planet/star orbits around system's axis (1 year = 10000 / orbitSpeed [= planet.period])
     // orbitRadius   - Distance to center of rotation
-    // orbitRadusX   - Farther distance to center of rotation if the orbit is an elipce
-    // orbitRadusY   - Closer distance to center of rotation if the orbit is an elipce
+    // orbitRadiusX   - Farther distance to center of rotation if the orbit is an elipce
+    // orbitRadiusY   - Closer distance to center of rotation if the orbit is an elipce
     // orbitOffset   - If the star's center does not match the center of the planet's rotation is not the center of rotation
     // data          - Contains the actual information about the planet/star (data.info keeps wikipedia information)
 
@@ -26,8 +26,8 @@ var Data = (function () {
             angularSpeed: 0.0294 * base.angularSpeed,
             orbitSpeed: 1,          // can't be 0 because period would be 'infinity' (period = 10000 / orbitSpeed)
             orbitRadius: 0,
-            orbitRadusX: 0,
-            orbitRadusY: 0,
+            orbitRadiusX: 0,
+            orbitRadiusY: 0,
             orbitOffset: {
                 x: 0,
                 y: 0
@@ -47,8 +47,8 @@ var Data = (function () {
             angularSpeed: 0.0171 * base.angularSpeed,
             orbitSpeed: 4.15 * base.orbitSpeed,
             orbitRadius: 0.39 * base.distance,
-            orbitRadusX: 0.47 * base.distance,
-            orbitRadusY: 0.31 * base.distance,
+            orbitRadiusX: 0.47 * base.distance,
+            orbitRadiusY: 0.31 * base.distance,
             orbitOffset: {
                 x: 0,
                 y: 0
@@ -68,8 +68,8 @@ var Data = (function () {
             angularSpeed: 0.0041 * base.angularSpeed,
             orbitSpeed: 1.6253 * base.orbitSpeed,
             orbitRadius: 0.72 * base.distance,
-            orbitRadusX: 0.73 * base.distance,
-            orbitRadusY: 0.72 * base.distance,
+            orbitRadiusX: 0.73 * base.distance,
+            orbitRadiusY: 0.72 * base.distance,
             orbitOffset: {
                 x: 0,
                 y: 0
@@ -89,8 +89,8 @@ var Data = (function () {
             angularSpeed: base.angularSpeed,
             orbitSpeed: base.orbitSpeed,
             orbitRadius: base.distance,
-            orbitRadusX: 1.02 * base.distance,
-            orbitRadusY: 0.98 * base.distance,
+            orbitRadiusX: 1.02 * base.distance,
+            orbitRadiusY: 0.98 * base.distance,
             orbitOffset: {
                 x: 0,
                 y: 0
@@ -110,8 +110,8 @@ var Data = (function () {
             angularSpeed: 0.9709 * base.angularSpeed,
             orbitSpeed: 0.5316 * base.orbitSpeed,
             orbitRadius: 1.52 * base.distance,
-            orbitRadusX: 1.67 * base.distance,
-            orbitRadusY: 1.37 * base.distance,
+            orbitRadiusX: 1.67 * base.distance,
+            orbitRadiusY: 1.37 * base.distance,
             orbitOffset: {
                 x: 0,
                 y: 0
@@ -131,8 +131,8 @@ var Data = (function () {
             angularSpeed: 2.4450 * base.angularSpeed,
             orbitSpeed: 0.0843 * base.orbitSpeed,
             orbitRadius: 2.61 * base.distance,  // orbitRadius: 5.21 * base.distance,   // to make it accurately scaled to Earth's orbit
-            orbitRadusX: 2.73 * base.distance,  // orbitRadusX: 5.46 * base.distance,   // to make it accurately scaled to Earth's orbit
-            orbitRadusY: 2.48 * base.distance,  // orbitRadusY: 4.96 * base.distance,   // to make it accurately scaled to Earth's orbit
+            orbitRadiusX: 2.73 * base.distance,  // orbitRadiusX: 5.46 * base.distance,   // to make it accurately scaled to Earth's orbit
+            orbitRadiusY: 2.48 * base.distance,  // orbitRadiusY: 4.96 * base.distance,   // to make it accurately scaled to Earth's orbit
             orbitOffset: {
                 x: 0,
                 y: 0
@@ -152,8 +152,8 @@ var Data = (function () {
             angularSpeed: 2.2831 * base.angularSpeed,
             orbitSpeed: 0.0339 * base.orbitSpeed,
             orbitRadius: 3.19 * base.distance,  // orbitRadius: 9.57 * base.distance,   // to make it accurately scaled to Earth's orbit
-            orbitRadusX: 3.37 * base.distance,  // orbitRadusX: 10.1 * base.distance,   // to make it accurately scaled to Earth's orbit
-            orbitRadusY: 3.01 * base.distance,  // orbitRadusY: 9.03 * base.distance,   // to make it accurately scaled to Earth's orbit
+            orbitRadiusX: 3.37 * base.distance,  // orbitRadiusX: 10.1 * base.distance,   // to make it accurately scaled to Earth's orbit
+            orbitRadiusY: 3.01 * base.distance,  // orbitRadiusY: 9.03 * base.distance,   // to make it accurately scaled to Earth's orbit
             orbitOffset: {
                 x: 0,
                 y: 0
@@ -173,8 +173,8 @@ var Data = (function () {
             angularSpeed: 1.3333 * base.angularSpeed,
             orbitSpeed: 0.0119 * base.orbitSpeed,
             orbitRadius: 3.85 * base.distance,  // orbitRadius: 19.23 * base.distance,  // to make it accurately scaled to Earth's orbit
-            orbitRadusX: 4.01 * base.distance,  // orbitRadusX: 20.07 * base.distance,  // to make it accurately scaled to Earth's orbit
-            orbitRadusY: 3.68 * base.distance,  // orbitRadusY: 18.39 * base.distance,  // to make it accurately scaled to Earth's orbit
+            orbitRadiusX: 4.01 * base.distance,  // orbitRadiusX: 20.07 * base.distance,  // to make it accurately scaled to Earth's orbit
+            orbitRadiusY: 3.68 * base.distance,  // orbitRadiusY: 18.39 * base.distance,  // to make it accurately scaled to Earth's orbit
             orbitOffset: {
                 x: 0,
                 y: 0
@@ -194,8 +194,8 @@ var Data = (function () {
             angularSpeed: 1.2658 * base.angularSpeed,
             orbitSpeed: 0.0061 * base.orbitSpeed,
             orbitRadius: 4.3 * base.distance,   // orbitRadius: 30.10 * base.distance,  // to make it accurately scaled to Earth's orbit
-            orbitRadusX: 4.35 * base.distance,  // orbitRadusX: 30.43 * base.distance,  // to make it accurately scaled to Earth's orbit
-            orbitRadusY: 4.25 * base.distance,  // orbitRadusY: 29.77 * base.distance,  // to make it accurately scaled to Earth's orbit
+            orbitRadiusX: 4.35 * base.distance,  // orbitRadiusX: 30.43 * base.distance,  // to make it accurately scaled to Earth's orbit
+            orbitRadiusY: 4.25 * base.distance,  // orbitRadiusY: 29.77 * base.distance,  // to make it accurately scaled to Earth's orbit
             orbitOffset: {
                 x: 0,
                 y: 0
@@ -215,8 +215,8 @@ var Data = (function () {
             angularSpeed: 0.1563 * base.angularSpeed,
             orbitSpeed: 0.0040 * base.orbitSpeed,
             orbitRadius: 4.94 * base.distance,  // orbitRadius: 39.53 * base.distance,  // to make it accurately scaled to Earth's orbit
-            orbitRadusX: 6.17 * base.distance,  // orbitRadusX: 49.36 * base.distance,  // to make it accurately scaled to Earth's orbit
-            orbitRadusY: 3.71 * base.distance,  // orbitRadusY: 29.70 * base.distance,  // to make it accurately scaled to Earth's orbit
+            orbitRadiusX: 6.17 * base.distance,  // orbitRadiusX: 49.36 * base.distance,  // to make it accurately scaled to Earth's orbit
+            orbitRadiusY: 3.71 * base.distance,  // orbitRadiusY: 29.70 * base.distance,  // to make it accurately scaled to Earth's orbit
             orbitOffset: {
                 x: 0,
                 y: 0
