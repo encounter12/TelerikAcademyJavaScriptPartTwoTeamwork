@@ -95,7 +95,7 @@ var animation = (function() {
             spaceBodies[i].setY(spaceBodies[i].spaceObject.orbit.radiusY * Math.sin(frame.time * 2 * Math.PI / spaceBodies[i].spaceObject.period) + spaceBodies[i].spaceObject.orbit.centerY);
 
             //planets and Sun rotating on their axes
-            var angleDiff = frame.timeDiff * spaceBodies[i].spaceObject.angularSpeed / 1000;
+            var angleDiff = frame.timeDiff * spaceBodies[i].spaceObject.angularSpeed;
             spaceBodies[i].rotate(angleDiff);
         }
 
