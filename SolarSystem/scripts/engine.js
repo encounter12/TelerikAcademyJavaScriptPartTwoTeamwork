@@ -25,6 +25,7 @@ var engine = (function() {
 		this.onBtnStartClick = function() {
 			isRunning = true;
 			animation.start();
+			animation.hideInfo();
 		};
 
 		this.onBtnStopClick = function() {

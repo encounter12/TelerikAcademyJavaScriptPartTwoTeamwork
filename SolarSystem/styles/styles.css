@@ -17,3 +17,36 @@ input[type=button] {
     height: 40px;
     /*margin: 20px;*/
 }
+
+#svg-container {
+	position: absolute; 
+	z-index: 10; 
+	top: 50px; 
+	left: 50px;
+	width: 300px;
+	height: 500px;
+	display: none;
+}
+
+#planet-name {
+	font-family: Arial;
+	font-size: 16px;
+	font-weight: bold;
+	text-transform: uppercase;
+}
+
+#planet-sub-info {
+	font-family: Arial;
+	font-size: 14px;
+}
+
+#planet-info {
+	font-family: Tahoma;
+	font-size: 14px;
+}
+
+#svg-container rect {
+	stroke: white;
+	stroke-width: 1px;
+	fill: lightblue;
+}
