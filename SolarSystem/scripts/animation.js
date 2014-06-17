@@ -61,11 +61,48 @@ var animation = (function() {
 
         this.start = function() {
             anim.start();
+			
         };
 
         this.stop = function() {
             anim.stop();
         };
+		
+		this.displayInfo = function(e) {
+			var clickedObjectname = e.name();
+			var xmlns = 'http://www.w3.org/2000/svg';
+			
+			for(var i = 0, len = solarSystem.spaceObjects.length; i < len; i++) {
+				if (solarSystem.spaceObjects[i].name == clickedObjectname) {
+					var info = solarSystem.spaceObjects[i].info;
+					document.getElementById('planet-name').innerHTML = clickedObjectname;
+					var subInfoContainer = document.getElementById('planet-sub-info');
+					subInfoContainer.getElementsByTagName('tspan')[0].innerHTML = 'closestToSun: ' + info.closestToSun;
+					subInfoContainer.getElementsByTagName('tspan')[1].innerHTML = 'dayLength: ' + info.dayLength;
+					subInfoContainer.getElementsByTagName('tspan')[2].innerHTML = 'farthestFromSun: ' + info.farthestFromSun;
+					subInfoContainer.getElementsByTagName('tspan')[3].innerHTML = 'radius: ' + info.radius;
+					subInfoContainer.getElementsByTagName('tspan')[4].innerHTML = 'timeToOrbitSun: ' + info.timeToOrbitSun;
+					
+					var infoLen = info.info.length;
+					document.getElementById('planet-info').innerHTML = '';
+					for (var j = 0; j < infoLen; j++) {
+						if (j > 0 && j % 40 == 0) {
+							var tspan = document.createElementNS(xmlns, 'tspan');
+							tspan.setAttributeNS(null, 'x', '20');
+							tspan.setAttributeNS(null, 'y',  180 + j  / 40 * 20);
+							tspan.innerHTML = info.info.substring(j - 40, j);
+							document.getElementById('planet-info').appendChild(tspan);
+						}
+					}
+					break;
+				}
+			}
+			document.getElementById('svg-container').style.display = 'block';
+		};
+		
+		this.hideInfo = function() {
+			document.getElementById('svg-container').style.display = 'none';
+		}
     }
 
     function createKineticImage() {
@@ -78,7 +115,8 @@ var animation = (function() {
             offset: {
                 x: this.spaceObject.radius / 2,
                 y: this.spaceObject.radius / 2
-            }
+            },
+			name: this.spaceObject.name
         });
 
         kineticImage.setAttr('spaceObject');
