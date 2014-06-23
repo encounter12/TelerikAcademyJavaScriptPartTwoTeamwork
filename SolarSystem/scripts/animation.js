@@ -9,7 +9,8 @@ var animation = (function() {
 		images = [],
 		spaceBodies = [],
 		anim = new Kinetic.Animation(AnimateFrame, layer),
-		animation = new Animation();
+		animation = new Animation(),
+        orbits = new Kinetic.Group();
 
 	function Animation() {
 		this.width = 1500;
@@ -52,7 +53,10 @@ var animation = (function() {
 				images[i].onload = createKineticImage;
 				images[i].src = spaceObjects[i].imgSrc;
 				images[i].spaceObject = spaceObjects[i];
+                orbits.add(createKineticOrbit(spaceObjects[i]));
 			}
+
+            kineticGroup.add(orbits);
 
 			layer.add(kineticGroup);
 			layer.draw();
@@ -121,6 +125,20 @@ var animation = (function() {
 		spaceBodies.push(kineticImage);
 		kineticGroup.add(kineticImage);
 	}
+
+    function createKineticOrbit(spaceObject) {
+        var kineticOrbit = new Kinetic.Ellipse({
+            x: spaceObject.orbit.centerX,
+            y: spaceObject.orbit.centerY,
+            radius: {
+                x: spaceObject.orbit.radiusX,
+                y: spaceObject.orbit.radiusY
+            },
+            stroke: 'white',
+            strokeWidth: 0.10
+        });
+        return kineticOrbit;
+    }
 
 	function AnimateFrame(frame) {
 		for (var i = 0, len = spaceBodies.length; i < len; i += 1) {
